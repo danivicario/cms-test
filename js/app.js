@@ -16,7 +16,7 @@ var MODE = {
 
 // set up initial MPL model (loads saved model if available, default otherwise)
 var propvars = ['p','q','r','s','t'],
-    varCount = 2;
+    varCount = 1;
 
 var model = new MPL.Model(),
     modelString = 'AS1;ApS1,2;AqS;';
@@ -544,11 +544,12 @@ function spliceLinksForNode(node) {
 var lastKeyDown = -1;
 
 function keydown() {
-  d3.event.preventDefault();
+  // d3.event.preventDefault();
 
   if(lastKeyDown !== -1) return;
   lastKeyDown = d3.event.keyCode;
 
+  // return
   // ctrl
   if(d3.event.keyCode === 17) {
     circle.call(force.drag);
@@ -635,15 +636,7 @@ function keydown() {
 function keyup() {
   lastKeyDown = -1;
 
-  // ctrl
-  if(d3.event.keyCode === 17) {
-    // "uncall" force.drag
-    // see: https://groups.google.com/forum/?fromgroups=#!topic/d3-js/-HcNN1deSow
-    circle
-      .on('mousedown.drag', null)
-      .on('touchstart.drag', null);
-    svg.classed('ctrl', false);
-  }
+ 
 }
 
 // handles to mode select buttons and left-hand panel
@@ -714,16 +707,7 @@ function setAppMode(newMode) {
   restart();
 }
 
-// allow enter key to evaluate formula
-evalInput.select('input')
-  .on('keyup', function() {
-    // enter
-    if(d3.event.keyCode === 13) evaluateFormula();
-  })
-  .on('keydown', function() {
-    // enter -- needed on IE9
-    if(d3.event.keyCode === 13) d3.event.preventDefault();
-  });
+
 
 // app starts here
 setAppMode(MODE.EDIT);
