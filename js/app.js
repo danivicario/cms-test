@@ -11,14 +11,26 @@ let sectionType = 3;
 
 document.querySelector("#b1").onclick = function () {
   sectionType = 1
+  document.querySelector("#b1").style.backgroundColor = "grey"
+  document.querySelector("#b2").style.backgroundColor = "grey"
+  document.querySelector("#b3").style.backgroundColor = "grey"
+  this.style.backgroundColor = "#75faff"
 }
 
 document.querySelector("#b2").onclick = function () {
   sectionType = 2
+  document.querySelector("#b1").style.backgroundColor = "grey"
+  document.querySelector("#b2").style.backgroundColor = "grey"
+  document.querySelector("#b3").style.backgroundColor = "grey"
+  this.style.backgroundColor = "#75faff"
 }
 
 document.querySelector("#b3").onclick = function () {
   sectionType = 3
+  document.querySelector("#b1").style.backgroundColor = "grey"
+  document.querySelector("#b2").style.backgroundColor = "grey"
+  document.querySelector("#b3").style.backgroundColor = "grey"
+  this.style.backgroundColor = "#75faff"
 }
 
 document.querySelector("#close").onclick = function () {
