@@ -21,6 +21,16 @@ document.querySelector("#b3").onclick = function () {
   sectionType = 3
 }
 
+document.querySelector("#close").onclick = function () {
+  document.querySelector("#menu").style.right = "-300px"
+}
+
+// window.addEventListener('click', function (evt) {
+//   if (evt.detail === 3) {
+//       alert('triple click!');
+//   }
+// });
+
 // app mode constants
 var MODE = {
   EDIT: 0,
@@ -87,7 +97,7 @@ nodes.forEach(function (source) {
 });
 
 // set up SVG for D3
-var width = 640,
+var width = window.innerWidth - 200,
   height = 540,
   colors = d3.scale.category10();
 
@@ -240,8 +250,8 @@ function evaluateFormula() {
 function setSelectedNode(node) {
   selected_node = node;
 
-  // update selected node label
-  selectedNodeLabel.html(selected_node ? '<strong>State ' + selected_node.id + '</strong>' : 'No state selected');
+  // debugger
+
 
   // update variable table
   if (selected_node) {
@@ -365,9 +375,9 @@ function restart() {
   });
 
   // update existing nodes (reflexive & selected visual states)
-  circle.selectAll('circle')
+  // circle.selectAll('circle')
     // .style('fill', function (d) { return colors[d.id] })
-    .classed('reflexive', function (d) { return d.reflexive; });
+    // .classed('reflexive', function (d) { return d.reflexive; });
 
   // add new nodes
   var g = circle.enter().append('svg:g');
@@ -390,8 +400,8 @@ function restart() {
         return 12
       }
     })
-    .style('fill', function (d) { console.log(colors[d.id]); return colors[d.id] })
-    .classed('reflexive', function (d) { return d.reflexive; })
+    .style('fill', function (d) { return colors[d.id] })
+    // .classed('reflexive', function (d) { return d.reflexive; })
     .on('mouseover', function (d) {
       if (appMode !== MODE.EDIT || !mousedown_node || d === mousedown_node) return;
       // enlarge target node
@@ -408,7 +418,9 @@ function restart() {
       // select node
       mousedown_node = d;
       if (mousedown_node === selected_node) setSelectedNode(null);
-      else setSelectedNode(mousedown_node);
+      else {
+        setSelectedNode(mousedown_node);
+      }
       selected_link = null;
 
       // reposition drag line
@@ -626,6 +638,9 @@ function keydown() {
         }
       }
       restart();
+      break;
+    case 77: // R
+      document.querySelector("#menu").style.right = "0"
       break;
     case 82: // R
       if (selected_node) {

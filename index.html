@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Language course skeleton generator</title>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="lib/bootstrap.min.css">
     <link rel="stylesheet" href="css/app.css">
   </head>
@@ -24,6 +24,16 @@
           <button class="btn btn-inverse" onclick="showLinkDialog()">Link to Current Model</button>
         </div> -->
         <div id="app-body">
+          <div id="menu">
+            <a id="close">X</a>
+            <h3>Exercise 3</h3>
+            
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique vitae optio, autem sapiente officiis numquam ducimus eum commodi dicta, consectetur tempora est aspernatur itaque, rerum cum fugit labore quos accusamus.</p>
+
+            <h6 style="margin-top: 30px;">Created on</h6>
+            <p>10/12/2020</p>
+            <p>By Federico Espinosa</p>
+          </div>
           <div class="panel tab-content">
             <div id="edit-pane" class="tab-pane active">
              <div class="instructions">
@@ -53,6 +63,12 @@
                       <li><strong>Delete</strong> removes the transition</li>
                     </ul>
                   </li>
+                  <li>
+                    Menu
+                    <ul>
+                      <li><strong>M</strong>(enu), to open the menu</li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
               
@@ -80,8 +96,6 @@
     </div>
   </body>
 
-  <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$']] } });</script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML"></script> -->
   <script src="lib/d3.min.js"></script>
   <script src="lib/formula-parser.min.js"></script>
   <script src="js/MPL.js"></script>
