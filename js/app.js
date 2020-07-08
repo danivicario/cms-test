@@ -334,8 +334,8 @@ function tick() {
       dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
       normX = deltaX / dist,
       normY = deltaY / dist,
-      sourcePadding = d.left ? 17 : 12,
-      targetPadding = d.right ? 17 : 12,
+      sourcePadding = d.source.sizeDan + 5,
+      targetPadding = d.target.sizeDan + 5,
       sourceX = d.source.x + (sourcePadding * normX),
       sourceY = d.source.y + (sourcePadding * normY),
       targetX = d.target.x - (targetPadding * normX),
@@ -379,6 +379,7 @@ function restart() {
   path.exit().remove();
 
   let colors = []
+  let types = []
 
   // circle (node) group
   // NB: the function arg is crucial here! nodes are known by id, not by index!
@@ -399,16 +400,19 @@ function restart() {
     .attr('r', (d) => {
       if (sectionType === 1) {
         colors[d.id] = "red"
+        d.sizeDan = 40
         return 40
       }
 
       if (sectionType === 2) {
         colors[d.id] = "green"
+        d.sizeDan = 20
         return 20
       }
 
       if (sectionType === 3) {
         colors[d.id] = "#a4deff"
+        d.sizeDan = 12
         return 12
       }
     })
@@ -598,6 +602,7 @@ function keydown() {
   // return
   // ctrl
   if (d3.event.keyCode === 17) {
+    console.log("17")
     circle.call(force.drag);
     svg.classed('ctrl', true);
     return;
@@ -685,7 +690,15 @@ function keydown() {
 function keyup() {
   lastKeyDown = -1;
 
-
+    // ctrl
+    if(d3.event.keyCode === 17) {
+      // "uncall" force.drag
+      // see: https://groups.google.com/forum/?fromgroups=#!topic/d3-js/-HcNN1deSow
+      circle
+        .on('mousedown.drag', null)
+        .on('touchstart.drag', null);
+      svg.classed('ctrl', false);
+    }
 }
 
 // handles to mode select buttons and left-hand panel
