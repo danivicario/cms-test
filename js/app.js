@@ -262,9 +262,6 @@ function evaluateFormula() {
 function setSelectedNode(node) {
   selected_node = node;
 
-  // debugger
-
-
   // update variable table
   if (selected_node) {
     var vals = selected_node.vals;
@@ -435,6 +432,8 @@ function restart() {
       mousedown_node = d;
       if (mousedown_node === selected_node) setSelectedNode(null);
       else {
+        document.querySelectorAll("circle").forEach(c => c.classList.remove("selected-node"))
+        this.classList.add("selected-node")
         setSelectedNode(mousedown_node);
       }
       selected_link = null;
@@ -492,6 +491,7 @@ function restart() {
 
       // select new link
       selected_link = link;
+
       setSelectedNode(null);
       restart();
     });
@@ -621,6 +621,7 @@ function keydown() {
         links.splice(links.indexOf(selected_link), 1);
       }
       selected_link = null;
+
       setSelectedNode(null);
       restart();
       break;
