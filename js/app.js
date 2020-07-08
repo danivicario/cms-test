@@ -43,7 +43,7 @@ var propvars = ['p', 'q', 'r', 's', 't'],
   varCount = 1;
 
 var model = new MPL.Model(),
-  modelString = 'AS1;ApS1,2;AqS;';
+  modelString = 'AS1';
 
 var modelParam = window.location.search.match(/\?model=(.*)/);
 if (modelParam) modelString = modelParam[1];
