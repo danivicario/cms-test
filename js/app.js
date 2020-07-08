@@ -386,7 +386,7 @@ function restart() {
       }
 
       if (sectionType === 3) {
-        colors[d.id] = "blue"
+        colors[d.id] = "#a4deff"
         return 12
       }
     })
